@@ -1,11 +1,12 @@
 import Layout from "../components/Layout/Layout";
 
-export default function Home() {
+const Populares=() =>{
   return (
     <div>
       <Layout>
-        <h1>inicio</h1>
+        <h1>Populares</h1>
       </Layout>
     </div>
   );
 }
+export default Populares;
