@@ -19,7 +19,7 @@ const Layout = (props) => {
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         />
 
         <link
