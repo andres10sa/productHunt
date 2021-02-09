@@ -5,6 +5,9 @@ const Buscar=() =>{
     <div>
       <Layout>
         <h1>Buscar</h1>
+        <p>estse se debe</p>
+
+        
       </Layout>
     </div>
   );
