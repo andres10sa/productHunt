@@ -8,35 +8,40 @@ const useValidation = (stateInicial, validar, fn) => {
     const [submitForm, guardarSubmitForm] = useState(false);
 
     useEffect(() => {
-     if(submitForm){
-         const noErrores=Object.keys(errores)?.length===0;
-         
-         if(noErrores){
-             fn(); //Fn = Función que se ejecuta en el componente
-         }
-         guardarSubmitForm(false);
-     }
-    }, []);
+        if (submitForm) {
+            const noErrores = Object.keys(errores)?.length === 0;
 
-    const handleChange = (e)=>{
-         guardarValores({...valores,[e.target.name]:e.target.value})
-         console.log("cambiando")
+            if (noErrores) {
+                fn(); //Fn = Función que se ejecuta en el componente
+            }
+            guardarSubmitForm(false);
+        }
+    }, [errores]);
+
+    const handleChange = (e) => {
+        guardarValores({ ...valores, [e.target.name]: e.target.value })
     };
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
         const erroresValidacion = validar(valores);
         guardarErrores(erroresValidacion);
         guardarSubmitForm(true);
-        console.log("neciando")
     };
+
+    //Cuando se hace el blur
+    const handleBlur = () => {
+        const erroresValidacion = validar(valores);
+        guardarErrores(erroresValidacion);
+    }
 
     return {
         valores,
         errores,
         submitForm,
         handleChange,
-        handleSubmit
+        handleSubmit,
+        handleBlur
     };
 }
 

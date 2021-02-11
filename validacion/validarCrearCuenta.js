@@ -15,7 +15,7 @@ export default function validarCrearCuenta(valores) {
      if (!valores?.password) {
         errores.password = "El password es obligatorio"
     }else if(valores?.password.length<6){
-        errores.password = "El password debe ser de al menos 6 caracterés"
+        errores.password = "El password debe ser de al menos 6 caracteres"
     }
     return errores;
 }

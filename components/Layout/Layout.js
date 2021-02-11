@@ -13,8 +13,8 @@ const Layout = (props) => {
           }
         `}
       />
-      <Head>
-        <html lang="es" />
+      {/* <Head>
+        <html lang="es" /> */}
         <title>Product Hunt Firebase y Next</title>
         <link
           rel="stylesheet"
@@ -27,7 +27,7 @@ const Layout = (props) => {
           rel="stylesheet"
           />
           <link rel="stylesheet" href="/static/css/app.css" />
-      </Head>
+      {/* </Head> */}
       <Header />
       <main>{props.children}</main>
     </>

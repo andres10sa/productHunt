@@ -36,3 +36,10 @@ ul{
 a{
   text-decoration: none;
 }
+.formulario{
+  max-width: 600px;
+  width: 95%;
+  margin: 5rem auto 0 auto;
+  background:transparent;
+  border:none;
+}
