@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Layout from "../components/Layout/Layout";
 import { css } from "@emotion/react";
 import { Campo, InputSubmit, Formulario, Error } from "../components/ui/Formulario";
@@ -7,6 +7,8 @@ import firebase from "../firebase"
 //validaciones
 import validarCrearCuenta from "../validacion/validarCrearCuenta";
 import useValidacion from "../hooks/useValidation";
+import Router from 'next/router';
+
 
 const STATE_INICIAL = {
   nombre: '',
@@ -16,16 +18,20 @@ const STATE_INICIAL = {
 
 const CrearCuenta = () => {
 
+   const [error,setError]=useState(false);
   
   const crearCuenta = async () => {
     try {
       await firebase.registrar(nombre, email, password);
+      Router.push("/")
     } catch (error) {
-      console.error("Hubo unerror al crear el usuario",error)
+      console.error("Hubo unerror al crear el usuario",error);
+      setError(error.message);
     }
   }
   const { valores, errores, handleSubmit, handleChange, handleBlur } = useValidacion(STATE_INICIAL, validarCrearCuenta, crearCuenta);
   const { nombre, email, password } = valores;
+  
 
 
   return (
@@ -54,7 +60,6 @@ const CrearCuenta = () => {
                   name="nombre"
                   value={nombre}
                   onChange={handleChange}
-                  onBlur={handleBlur}
                 />
               </Campo>
               {errores.nombre && <Error>{errores.nombre}</Error>}
@@ -69,7 +74,7 @@ const CrearCuenta = () => {
                   name="email"
                   value={email}
                   onChange={handleChange}
-                  onBlur={handleBlur}
+
                 />
               </Campo>
               {errores.email && <Error>{errores.email}</Error>}
@@ -83,10 +88,10 @@ const CrearCuenta = () => {
                   name="password"
                   value={password}
                   onChange={handleChange}
-                  onBlur={handleBlur}
                 />
               </Campo>
               {errores.password && <Error>{errores.password}</Error>}
+              {error && <Error>{error}</Error>}
               <InputSubmit type="submit" value="Crear Cuenta" />
             </form>
           </div>
